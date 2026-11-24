@@ -1,3 +1,0 @@
-import Link from "@/components/Link";
-import type { ResearchProject as Project } from "@/data/types";
-export function ResearchProject({ project }: { project: Project }) { return <article className="project-row"><div className="project-meta"><span>{project.area}</span><span>{project.date}</span></div><div><h3><Link href={`/research/${project.slug}/`}>{project.name}<span className="project-subtitle">{project.title}</span></Link></h3><p>{project.summary}</p><div className="project-links"><Link href={`/research/${project.slug}/`}>Research details</Link>{project.sources.slice(0, 2).map(source => <a key={source.url} href={source.url}>{source.label}</a>)}</div></div></article>; }

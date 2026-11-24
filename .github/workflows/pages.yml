@@ -1,4 +1,4 @@
-name: Deploy academic website to GitHub Pages
+name: Deploy classic academic website
 on:
   push:
     branches: [main]
@@ -9,28 +9,23 @@ concurrency:
   group: github-pages
   cancel-in-progress: false
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - name: Check HTML and local links
+        run: python3 scripts/check_site.py
+      - name: Collect static website files
+        run: |
+          mkdir _site
+          cp index.html 404.html robots.txt sitemap.xml favicon.svg .nojekyll _site/
+          cp -R assets images research publications cv _site/
+      - uses: actions/upload-pages-artifact@v5
         with:
-          node-version: 22
-          cache: npm
-      - name: Configure Pages
-        id: pages
-        uses: actions/configure-pages@v5
-      - run: npm ci
-      - name: Validate and build
-        run: npm run check
-        env:
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.origin }}
-          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: out
+          path: _site
+          include-hidden-files: true
   deploy:
-    needs: build
+    needs: validate
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -41,4 +36,4 @@ jobs:
     steps:
       - name: Publish
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

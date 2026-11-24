@@ -1,110 +1,112 @@
-# Kollaikal Rupesh — Academic research website
+# Kollaikal Rupesh — Personal academic website
 
-A static, accessible academic website built with Next.js App Router, TypeScript, Tailwind CSS, and Lucide. Content is stored in typed data files. No database, authentication, CMS, analytics, or runtime API is required.
+Live website: **https://kollaikal-rupesh.github.io/**
 
-## Local development
+This is a classic website: editable HTML pages, one shared CSS file, and a small optional JavaScript file for copying BibTeX citations. There is no framework, package installation, bundler, or compilation step. All content and navigation work without JavaScript.
 
-Use Node.js 22.13 or newer (Node 22 LTS is configured in CI).
-
-```bash
-npm ci
-npm run dev
-```
-
-Open the local URL printed by Next.js. Validate and export:
-
-```bash
-npm run lint
-npm run typecheck
-npm run build
-node scripts/check-export.mjs
-npm run preview
-```
-
-`npm run check` combines lint, TypeScript, production build, and the static-export checks. Build output is in `out/`. The preview command serves that output at `http://localhost:3000/` and accepts a `PORT` environment variable. Production and development use Next.js’s supported Webpack mode because this development environment restricts the local worker ports used by Turbopack.
-
-## Free hosting on GitHub Pages (recommended)
-
-GitHub Free supports Pages from a **public repository**. Hosting and HTTPS are free. A separately registered custom domain has its own registration/renewal cost. This website is fully static and fits Pages; no Next.js server is needed.
-
-1. Create the public repository **`kollaikal-rupesh.github.io`** under the `kollaikal-rupesh` account. If it already exists, review its contents before replacing anything.
-2. Push this project’s contents, including `.github/workflows/pages.yml` and `package-lock.json`, to its `main` branch. Do not upload `node_modules`, `.next`, or `out`.
-3. In **Settings → Pages → Build and deployment**, select **GitHub Actions**.
-4. Open **Actions → Deploy academic website to GitHub Pages → Run workflow** (or push a new commit).
-5. Check the workflow’s deployment URL. The expected user-site address is **https://kollaikal-rupesh.github.io/**. It is not a deployed URL until that workflow succeeds.
-
-The workflow builds using the origin and base path returned by GitHub’s official Pages action. It also supports a project repository such as `/academic-website/` without broken asset paths. Its permissions are limited to reading source and deploying the generated Pages artifact. No personal access token needs to be added.
-
-A public repository makes the source and committed content public. The site contains no phone number, residential address, GPA, or other private details from the brief.
-
-### Custom domain later
-
-**kollaikalrupesh.com** is the recommended personal domain if available. Its availability and registration price were not established, and no domain was purchased.
-
-1. Register a domain you choose, or use a domain you already own.
-2. Verify ownership in GitHub account settings, following [GitHub’s verification instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages).
-3. Set the domain in this repository’s **Settings → Pages → Custom domain**.
-4. Configure the apex and `www` DNS records using [GitHub’s current custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). `www` points to `kollaikal-rupesh.github.io`, not to a repository path.
-5. Enable **Enforce HTTPS** after certificate provisioning. GitHub handles the redirect between correctly configured apex and `www` domains.
-6. Rerun the deployment workflow after changing the domain so canonical URLs, social metadata, and the sitemap use the new origin.
-
-For the Actions deployment used here, configure the custom domain in Pages settings. Do not add an unowned domain or a speculative CNAME file.
-
-Official references: [Pages availability and custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages), [HTTPS](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https), [usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
-
-## Vercel alternative
-
-1. Push the project to a GitHub repository and import it into Vercel.
-2. Select the Next.js framework. `vercel.json` sets `npm run build`, output `out`, and trailing slashes.
-3. Set **NEXT_PUBLIC_SITE_URL** to your actual production origin, such as `https://your-project.vercel.app` or your verified custom domain. Leave **NEXT_PUBLIC_BASE_PATH** empty.
-4. Deploy and confirm the production URL. After changing domains, update the variable and redeploy.
-5. In Vercel’s Domains settings, add your apex and `www` domains and choose one as the primary; redirect the other to it.
-
-Without an explicit origin, the project defaults to `https://kollaikal-rupesh.github.io`. `.env.example` documents the two optional build-time settings. No runtime secrets are necessary. GitHub Pages publishing is controlled by the included workflow. Vercel remains an optional alternative.
-
-## Updating content
-
-- `data/profile.ts`: biography links, research interests, optional portrait path. Use only a real supplied portrait; otherwise the layout needs no image.
-- `data/research.ts` and `data/mini.ts`: project descriptions and claims. Every numerical claim includes a checkpoint, benchmark version, source, evaluation date (or explicitly unknown date), verification status, and verification date. Only `verified` claims render.
-- `data/publications.ts` and `data/primary-publication.ts`: titles, full ordered author lists, dates, status, original URLs, and BibTeX. Unverified entries do not render or enter the sitemap.
-- `data/experience.ts` and `data/education.ts`: user-supplied background.
-- `data/contributions.ts`: links to verified merged pull requests.
-- `data/updates.ts`: factual dated news. The homepage hides updates until at least three entries exist.
-- `components/Recognition.tsx`: documented external citations/integrations, kept separate from authored publications.
-
-After content changes, run `npm run check` and inspect the affected pages. Keep claims scoped to the exact model version and evaluation population. A newer benchmark is not interchangeable with an older one.
-
-## Adding the supplied academic CV
-
-Place the genuine PDF at:
+## Files
 
 ```text
-public/cv/kollaikal-rupesh-cv.pdf
+index.html                       Homepage, portrait, and profile links
+assets/styles.css                Shared responsive design
+assets/site.js                   Optional citation-copy enhancement
+images/kollaikal-rupesh.webp      Owner-supplied portrait
+images/social.png                Social sharing image
+research/index.html              Research overview
+research/audrey/index.html       Audrey research page
+research/turn-1/index.html        turn-1 research page
+research/turn-1-mini/index.html   turn-1-mini research page
+publications/index.html          Publication listing
+publications/<slug>/index.html   Individual publication and citation pages
+cv/index.html                    Background and CV contact page
+404.html                         Custom missing-page response
+sitemap.xml                      Public page inventory
+robots.txt                       Crawler configuration
+scripts/check_site.py            Optional checks (Python standard library)
+.github/workflows/pages.yml      Automatic GitHub Pages deployment
 ```
 
-Rebuild and deploy. The `/cv/` page automatically exposes **View CV** (new tab) and **Download CV** only when the file exists at build time. Replacing the file preserves its public URL. No academic PDF has been fabricated. Until a PDF is provided, the page offers an email request link and a background summary. Reconcile role dates/titles with that CV before a final application submission.
+## Preview locally
 
-## QA and editorial review
-
-See `VERIFICATION.md` for source evidence, omitted claims, version distinctions, and remaining factual questions; see `QA.md` for performed checks and limitations. Internal links use native navigation, so the static export does not depend on host-specific React Server Component rewrites. The exported HTML remains readable without JavaScript. Only the optional citation-copy interaction requires client JavaScript. System fonts avoid external font requests. SEO includes unique titles/descriptions, canonicals, Open Graph/Twitter images, a sitemap, robots.txt, Person data, and ScholarlyArticle data for verified publication pages.
-
-The source is provided for the owner’s use. Third-party research/model licenses remain those specified by their original repositories.
-
-### Command-line upload after creating the empty GitHub repository
-
-If starting from the source ZIP, initialize and commit first:
+Serve this directory with any static web server. For example, with Python 3.9 or newer:
 
 ```bash
-git init -b main
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+Open **http://localhost:8000/**. Use a server rather than opening HTML directly from disk because links and assets use paths relative to the website root.
+
+Validate local links, metadata, structured data, and citation controls:
+
+```bash
+python3 scripts/check_site.py
+```
+
+No Python code runs on the public website. Python is only used for optional local checks and GitHub workflow validation.
+
+## Publish updates
+
+The public repository is **kollaikal-rupesh/kollaikal-rupesh.github.io**. Push changes to `main`:
+
+```bash
 git add .
-git commit -m "Build academic research website"
+git commit -m "Update academic website"
+git push origin main
 ```
 
-Then connect the repository and push (skip `remote add` if `origin` already exists):
+The workflow validates the HTML, collects the static website files, and deploys them to GitHub Pages. It installs no website packages and performs no frontend build. Documentation and validation scripts are excluded from the deployment artifact.
 
-```bash
-git remote add origin https://github.com/kollaikal-rupesh/kollaikal-rupesh.github.io.git
-git push -u origin main
+Hosting uses GitHub Pages with HTTPS. A custom domain can be connected later; registration and annual renewal are separate costs. No domain was purchased.
+
+## Edit content
+
+Edit the corresponding HTML file directly. The homepage includes selected research, publications, experience, education, open-source contributions, recognition, and research philosophy. Keep summaries on the homepage and detail pages consistent when changing a project or publication.
+
+Header and footer markup is deliberately plain HTML and appears in each page. Apply shared navigation changes to every page. Visual design is centralized in `assets/styles.css`.
+
+To add a project or publication:
+
+1. Copy a similar detail page into a new directory with an `index.html` file.
+2. Update its title, description, canonical URL, social metadata, content, and structured data where applicable.
+3. Add links from the homepage and appropriate index page.
+4. Add the canonical URL to `sitemap.xml`.
+5. Run the checker, inspect the page, and push.
+
+Research numbers must retain checkpoint, benchmark population/version, source, and date context. Do not mix original benchmark results with later expanded evaluations. See `VERIFICATION.md` for sources and pending factual questions.
+
+## Portrait and profile links
+
+The supplied portrait is stored at `images/kollaikal-rupesh.webp`, optimized to approximately 25 KB. The homepage uses explicit image dimensions and responsive CSS. To replace it, preserve the path or update the homepage image reference and dimensions.
+
+GitHub and LinkedIn appear below the name on the homepage and in each page’s footer. Keep the Person structured data's `sameAs` links consistent with the actual profiles.
+
+## Add the academic CV when supplied
+
+Place the genuine document at:
+
+```text
+cv/kollaikal-rupesh-cv.pdf
 ```
 
-Use your normal GitHub authentication flow. No credentials belong in the source files or remote URL. Enable GitHub Actions as the Pages source as described above.
+Then add these links to `cv/index.html` and remove the interim email-request sentence if appropriate:
+
+```html
+<a href="/cv/kollaikal-rupesh-cv.pdf" target="_blank" rel="noopener noreferrer">View CV (PDF, new tab)</a>
+<a href="/cv/kollaikal-rupesh-cv.pdf" download>Download CV (PDF)</a>
+```
+
+The public URL stays the same whenever the PDF is replaced. The checker fails if a local PDF link points to a missing file. No substitute CV has been generated; the live site currently offers a CV request by email. Reconcile the supplied role dates/titles with the latest CV before final application submission.
+
+## Custom domain or another static host
+
+For GitHub Pages, verify domain ownership, configure the domain in **Settings → Pages**, set DNS using [GitHub’s current instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), and enable HTTPS. GitHub supports redirects between properly configured apex and `www` domains.
+
+When the primary domain changes, replace `https://kollaikal-rupesh.github.io` in all page metadata/structured data, `sitemap.xml`, and `robots.txt`, and update the expected sitemap origin in `scripts/check_site.py`. Keep local paths unchanged. This site is intended to live at the root of a domain, as it does on the current user-site address.
+
+Any static host, including Vercel, can serve these files directly with no framework/build command. Upload only the HTML pages, `assets/`, `images/`, `research/`, `publications/`, `cv/`, `favicon.svg`, `robots.txt`, `sitemap.xml`, and `.nojekyll`.
+
+## Verification and limitations
+
+See `VERIFICATION.md` for research evidence and omitted claims, and `QA.md` for completed checks and limits. The source contains no personal phone number, residential address, GPA, or private circumstances. No analytics or third-party browser requests are required to render a page.
+
+The previous Next.js implementation remains available in Git history; current source and deployment use plain HTML, CSS, and optional JavaScript.

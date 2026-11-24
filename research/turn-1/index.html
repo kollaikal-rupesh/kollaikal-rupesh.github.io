@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <title>turn-1 — Conversational turn detection | Kollaikal Rupesh</title>
+    <meta name="description" content="A separate, larger model for distinguishing completed turns from pauses and hesitation. It studies acoustic evidence together with optional context from the agent’s previous utterance.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kollaikal-rupesh.github.io/research/turn-1/">
+    <meta property="og:title" content="turn-1 — Conversational turn detection">
+    <meta property="og:description" content="A separate, larger model for distinguishing completed turns from pauses and hesitation. It studies acoustic evidence together with optional context from the agent’s previous utterance.">
+    <meta property="og:url" content="https://kollaikal-rupesh.github.io/research/turn-1/">
+    <meta property="og:image" content="https://kollaikal-rupesh.github.io/images/social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kollaikal Rupesh — Independent AI Researcher">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="turn-1 — Conversational turn detection">
+    <meta name="twitter:description" content="A separate, larger model for distinguishing completed turns from pauses and hesitation. It studies acoustic evidence together with optional context from the agent’s previous utterance.">
+    <meta name="twitter:image" content="https://kollaikal-rupesh.github.io/images/social.png">
+    <link rel="icon" href="/favicon.svg">
+  </head>
+  <body><a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header shell"><a href="/" class="wordmark" aria-label="Kollaikal Rupesh home">KR<span aria-hidden="true">.</span></a>
+      <nav aria-label="Main navigation"><a href="/">Home</a><a href="/research/">Research</a><a href="/publications/">Publications</a><a href="/#experience">Experience</a><a href="/cv/">CV</a>
+      </nav>
+    </header>
+    <main id="main" class="shell" tabindex="-1">
+      <div class="page-heading">
+        <p class="breadcrumb"><a href="/research/">All research</a></p>
+        <p class="eyebrow">Conversational modeling</p>
+        <h1>turn-1</h1>
+        <p class="lead">Conversational turn detection</p>
+        <p class="source-note">Release v1.0.0 · October 2026 · Open model · Apache-2.0</p>
+        <div class="social-links"><a href="https://huggingface.co/p99lab/turn-1">Model &amp; code</a><a href="https://github.com/livekit/eot-bench/blob/1769c562b5a962b97b110d26ec0ee3cf864cc249/README.md">Updated eot-bench v1.1 record</a>
+        </div>
+      </div>
+      <section class="detail-section prose">
+        <h2>Research question</h2>
+        <p>How can acoustic evidence and conversational context help distinguish a completed utterance from a pause within an ongoing turn?</p>
+        <p>A separate, larger model for distinguishing completed turns from pauses and hesitation. It studies acoustic evidence together with optional context from the agent’s previous utterance.</p>
+      </section>
+      <section class="detail-section prose">
+        <h2>Approach</h2>
+        <p>The released model combines two speech encoders, with 2.0B and 0.8B parameters, and task-specific adaptation. It can condition on the agent’s previous utterance.</p>
+        <p>Each decision processes the last eight seconds of user audio. This is not turn-1-mini’s incremental causal architecture; model size, runtime, and benchmark results belong to separate releases.</p>
+      </section>
+      <section class="detail-section">
+        <h2>Findings &amp; evaluation</h2>
+        <div class="prose">
+          <p>The current model card reports 10.6% false cut-offs at a 300 ms dead-air setting on eot-bench English, and 553 ms latency at a 5% false-cutoff operating point.</p>
+          <p>The evaluation uses 400 turns and 705 scored mid-turn pauses. The benchmark’s policy sweep chooses operating settings on the same turns it scores.</p>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>10.6%</strong><span>False cut-offs</span>
+          </div>
+          <div class="metric"><strong>553 ms</strong><span>Latency at 5% cut-offs</span>
+          </div>
+        </div>
+        <dl class="claims prose">
+          <div>
+            <dt>False cut-offs: 10.6%</dt>
+            <dd>At 300 ms dead air on eot-bench English. This is the original turn-1 model family, not turn-1-mini.</dd>
+            <dd class="source-note">turn-1 · v1.0.0 model card · eot-bench data ca9d98a · harness 9ee21b5<br>Exact measurement date not stated in source · Source checked 2026-11-24 · <a href="https://huggingface.co/p99lab/turn-1">Source</a></dd>
+          </div>
+          <div>
+            <dt>Latency at 5% cut-offs: 553 ms</dt>
+            <dd>Benchmark dead-air latency at a 5% false-cutoff operating point; not inference compute time.</dd>
+            <dd class="source-note">turn-1 · v1.0.0 model card · eot-bench data ca9d98a · harness 9ee21b5<br>Exact measurement date not stated in source · Source checked 2026-11-24 · <a href="https://huggingface.co/p99lab/turn-1">Source</a></dd>
+          </div>
+        </dl>
+      </section>
+      <section class="detail-section prose">
+        <h2>Scope &amp; limitations</h2>
+        <p>These are original model-card results checked November 24, 2026. The November 19 eot-bench v1.1 benchmark reports 19.3% false cut-offs at 300 ms across its pooled general, accented, and short-turn cohorts. That expanded population differs from the original 400-turn evaluation above. An exact measurement date is not supplied. They are not attributed to turn-1-mini or its TurnBench system.</p>
+        <p>The reported intervals overlap those of competing models; without paired comparisons, point estimates alone do not establish statistically significant superiority.</p>
+        <p>Full-window inference and optional text context carry different computational requirements from the compact streaming model.</p>
+      </section>
+      <section class="detail-section">
+        <h2>Research materials</h2>
+        <ul class="source-list">
+          <li><a href="https://huggingface.co/p99lab/turn-1">Model &amp; code</a></li>
+          <li><a href="https://github.com/livekit/eot-bench/blob/1769c562b5a962b97b110d26ec0ee3cf864cc249/README.md">Updated eot-bench v1.1 record</a></li>
+        </ul>
+        <p class="source-note">Numerical results are reported by the linked authors or benchmark maintainers. Sources checked November 24, 2026.</p>
+      </section>
+    </main>
+    <footer class="shell site-footer">
+      <div><span class="footer-name">Kollaikal Rupesh</span>
+        <p>Speech, language, and interactive intelligence.</p>
+      </div>
+      <div><a href="mailto:kollaikalrupesh@gmail.com">Get in touch</a>
+        <p><span><a href="https://github.com/kollaikal-rupesh">GitHub</a><span aria-hidden="true"> · </span></span><span><a href="https://linkedin.com/in/kollaikalrupesh">LinkedIn</a><span aria-hidden="true"> · </span></span><a href="/research/">Research</a><span aria-hidden="true"> · </span><a href="/cv/">CV</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

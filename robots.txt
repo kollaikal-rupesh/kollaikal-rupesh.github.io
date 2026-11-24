@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://kollaikal-rupesh.github.io/sitemap.xml

@@ -1,9 +1,4 @@
-node_modules/
-.next/
-out/
-.env*
-!.env.example
-.vercel/
-*.tsbuildinfo
+_site/
+__pycache__/
+*.pyc
 .DS_Store
-next-env.d.ts

@@ -1,5 +1,0 @@
-import { publications } from "@/data/publications";
-import { PublicationEntry } from "@/components/PublicationEntry";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata("Publications", "Verified research publications and preprints by Kollaikal Rupesh, with original publication records and citations.", "/publications/");
-export default function PublicationsPage() { return <><div className="page-heading"><p className="eyebrow">Writing & research</p><h1>Publications</h1><p className="lead">Research in spoken dialogue, language modeling, and the evaluation of intelligent systems.</p></div>{(["preprint", "published"] as const).map(kind => { const entries = publications.filter(p => p.verified && p.kind === kind); return entries.length ? <section className="home-section" key={kind}><h2>{kind === "preprint" ? "Preprints" : "Articles & proceedings"}</h2>{kind === "preprint" && <p className="source-note">These manuscripts have not been peer-reviewed.</p>}{entries.map(p => <PublicationEntry key={p.slug} publication={p}/>)}</section> : null; })}</>; }

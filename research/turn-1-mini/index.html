@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <title>turn-1-mini — Efficient causal end-of-turn prediction | Kollaikal Rupesh</title>
+    <meta name="description" content="A 5.3M-parameter, audio-only model for predicting when a speaker has finished. The original v1 release studies strictly causal turn-taking with streaming inference on a single CPU core.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kollaikal-rupesh.github.io/research/turn-1-mini/">
+    <meta property="og:title" content="turn-1-mini — Efficient causal end-of-turn prediction">
+    <meta property="og:description" content="A 5.3M-parameter, audio-only model for predicting when a speaker has finished. The original v1 release studies strictly causal turn-taking with streaming inference on a single CPU core.">
+    <meta property="og:url" content="https://kollaikal-rupesh.github.io/research/turn-1-mini/">
+    <meta property="og:image" content="https://kollaikal-rupesh.github.io/images/social.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kollaikal Rupesh — Independent AI Researcher">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="turn-1-mini — Efficient causal end-of-turn prediction">
+    <meta name="twitter:description" content="A 5.3M-parameter, audio-only model for predicting when a speaker has finished. The original v1 release studies strictly causal turn-taking with streaming inference on a single CPU core.">
+    <meta name="twitter:image" content="https://kollaikal-rupesh.github.io/images/social.png">
+    <link rel="icon" href="/favicon.svg">
+  </head>
+  <body><a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header shell"><a href="/" class="wordmark" aria-label="Kollaikal Rupesh home">KR<span aria-hidden="true">.</span></a>
+      <nav aria-label="Main navigation"><a href="/">Home</a><a href="/research/">Research</a><a href="/publications/">Publications</a><a href="/#experience">Experience</a><a href="/cv/">CV</a>
+      </nav>
+    </header>
+    <main id="main" class="shell" tabindex="-1">
+      <div class="page-heading">
+        <p class="breadcrumb"><a href="/research/">All research</a></p>
+        <p class="eyebrow">Causal spoken dialogue</p>
+        <h1>turn-1-mini</h1>
+        <p class="lead">Efficient causal end-of-turn prediction</p>
+        <p class="source-note">Preprint · October 30, 2026 · Open model · Apache-2.0 · Preprint</p>
+        <div class="social-links"><a href="https://huggingface.co/p99lab/turn-1-mini">Model &amp; code</a><a href="https://www.preprints.org/manuscript/202610.3143">Preprint</a>
+        </div>
+      </div>
+      <section class="detail-section prose">
+        <h2>Research question</h2>
+        <p>Can a compact causal neural model anticipate the completion of a conversational turn using only information available up to the current moment?</p>
+        <p>A 5.3M-parameter, audio-only model for predicting when a speaker has finished. The original v1 release studies strictly causal turn-taking with streaming inference on a single CPU core.</p>
+      </section>
+      <section class="detail-section prose">
+        <h2>Approach</h2>
+        <p>Two causal convolutions and six transformer layers use ALiBi positions, with attention restricted to 1.2 seconds per layer. Cached state enables 160 ms streaming steps without future acoustic lookahead.</p>
+        <p>Training distills speech representations and then turn-taking behavior. The model reads audio rather than transcripts; its 0–4 kHz input band targets telephone and conversational speech.</p>
+        <figure class="causal-diagram">
+          <div class="causal-stages">
+            <div><strong>Audio up to now</strong><span>160 ms streaming steps</span>
+            </div>
+            <div><strong>Causal encoder</strong><span>Past context and cached state</span>
+            </div>
+            <div><strong>Turn probability</strong><span>One output per 20 ms frame</span>
+            </div>
+          </div>
+          <figcaption>Conceptual processing sequence for v1. Every decision uses only current and past audio; this is an architecture schematic, not a measured waveform.</figcaption>
+        </figure>
+      </section>
+      <section class="detail-section">
+        <h2>Findings &amp; evaluation</h2>
+        <div class="prose">
+          <p>The original float32 release reports 22.6% false cut-offs at a 300 ms dead-air setting on eot-bench English. Compute time and conversational response latency measure different things.</p>
+          <p>The 7 MB INT8 ONNX graph changes approximately 0.2% of decisions on development audio. That graph was not evaluated on eot-bench in the archived release; the separately evaluated INT8 weights must not be conflated with it.</p>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong>5.3M</strong><span>Parameters</span>
+          </div>
+          <div class="metric"><strong>1.29 ms</strong><span>Median compute</span>
+          </div>
+          <div class="metric"><strong>22.6%</strong><span>False cut-offs</span>
+          </div>
+        </div>
+        <dl class="claims prose">
+          <div>
+            <dt>Parameters: 5.3M</dt>
+            <dd>5,262,337 parameters in the original released model.</dd>
+            <dd class="source-note">turn-1-mini v1 · e3c8bc7 · Model specification<br>Exact measurement date not stated in source · Source checked 2026-11-24 · <a href="https://huggingface.co/p99lab/turn-1-mini/blob/e3c8bc7/README.md">Source</a></dd>
+          </div>
+          <div>
+            <dt>Median compute: 1.29 ms</dt>
+            <dd>Per 160 ms step on one Apple M4 Pro CPU core, float32, including low-pass filtering and log-mel features. Reported model compute, not end-to-end response latency.</dd>
+            <dd class="source-note">turn-1-mini v1 · October 30, 2026 preprint · Section 7<br>Exact measurement date not stated in source · Source checked 2026-11-24 · <a href="https://www.preprints.org/manuscript/202610.3143">Source</a></dd>
+          </div>
+          <div>
+            <dt>False cut-offs: 22.6%</dt>
+            <dd>At 300 ms dead air, English validation: 400 turns and 705 mid-turn pauses. Reported 95% interval: 18.8–27.8%.</dd>
+            <dd class="source-note">turn-1-mini v1 · float32 · eot-bench data ca9d98a · harness 9ee21b5<br>Exact measurement date not stated in source · Source checked 2026-11-24 · <a href="https://huggingface.co/p99lab/turn-1-mini/blob/e3c8bc7/README.md">Source</a></dd>
+          </div>
+        </dl>
+      </section>
+      <section class="detail-section prose">
+        <h2>Scope &amp; limitations</h2>
+        <p>Results below refer to v1, archived model-card revision e3c8bc7, and the October 2026 preprint. The current repository now documents v2, a 5.4M-parameter multi-party extension with different evaluation and compute settings.</p>
+        <p>The November 19, 2026 eot-bench v1.1 record reports 39.6% false cut-offs at 300 ms for the pinned v1.2.3 release. It pools general, accented, and short-turn cohorts, unlike the original 400-turn English evaluation above. The populations differ, so these scores are not directly comparable. The eot-bench policy sweep selects operating settings on the same 400 turns it scores. Overlapping uncertainty intervals and the absence of paired comparisons do not establish a significant advantage over other downloadable models.</p>
+        <p>Audio-only endpointing can misread pauses within spelled entities or unfinished thoughts. No phone, battery, or complete conversational pipeline performance is claimed.</p>
+      </section>
+      <section class="detail-section">
+        <h2>Research materials</h2>
+        <ul class="source-list">
+          <li><a href="https://huggingface.co/p99lab/turn-1-mini">Model &amp; code</a></li>
+          <li><a href="https://www.preprints.org/manuscript/202610.3143">Preprint</a></li>
+          <li><a href="https://huggingface.co/p99lab/turn-1-mini/blob/e3c8bc7/README.md">Archived v1 model card</a></li>
+          <li><a href="https://github.com/P99Lab/turn-1-mini">TurnBench system write-up</a></li>
+          <li><a href="https://github.com/livekit/eot-bench/blob/1769c562b5a962b97b110d26ec0ee3cf864cc249/README.md">Current eot-bench record</a></li>
+        </ul>
+        <p class="source-note">Numerical results are reported by the linked authors or benchmark maintainers. Sources checked November 24, 2026.</p>
+      </section>
+    </main>
+    <footer class="shell site-footer">
+      <div><span class="footer-name">Kollaikal Rupesh</span>
+        <p>Speech, language, and interactive intelligence.</p>
+      </div>
+      <div><a href="mailto:kollaikalrupesh@gmail.com">Get in touch</a>
+        <p><span><a href="https://github.com/kollaikal-rupesh">GitHub</a><span aria-hidden="true"> · </span></span><span><a href="https://linkedin.com/in/kollaikalrupesh">LinkedIn</a><span aria-hidden="true"> · </span></span><a href="/research/">Research</a><span aria-hidden="true"> · </span><a href="/cv/">CV</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

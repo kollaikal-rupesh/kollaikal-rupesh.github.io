@@ -1,3 +1,0 @@
-import Link from "@/components/Link";
-import { profile } from "@/data/profile";
-export function Footer() { return <footer className="shell site-footer"><div><span className="footer-name">Kollaikal Rupesh</span><p>Speech, language, and interactive intelligence.</p></div><div><a href="mailto:kollaikalrupesh@gmail.com">Get in touch</a><p>{profile.links.filter(link => link.label === "GitHub" || link.label === "LinkedIn").map(link => <span key={link.label}><a href={link.url}>{link.label}</a><span aria-hidden="true"> · </span></span>)}<Link href="/research/">Research</Link><span aria-hidden="true"> · </span><Link href="/cv/">CV</Link></p></div></footer>; }

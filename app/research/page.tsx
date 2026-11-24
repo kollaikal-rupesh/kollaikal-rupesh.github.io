@@ -1,6 +1,0 @@
-import { research } from "@/data/research";
-import { profile } from "@/data/profile";
-import { ResearchProject } from "@/components/ResearchProject";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata("Research", "Research on speech recognition, causal conversational turn-taking, and computationally efficient spoken dialogue by Kollaikal Rupesh.", "/research/");
-export default function ResearchPage() { return <><div className="page-heading"><p className="eyebrow">Research</p><h1>Understanding spoken interaction.</h1><p className="lead">How do intelligent systems listen, recognize an unfinished thought, and know when to respond?</p></div><section className="home-section"><h2>Selected projects</h2>{research.map(p => <ResearchProject key={p.slug} project={p}/>)}</section><section className="home-section prose"><h2>A broader direction</h2><p className="mt-5">My current work in speech recognition and turn-taking motivates a broader interest in computational models of human cognition: how language is processed incrementally, and how interaction unfolds under uncertainty.</p><p>Emerging interests include {profile.emerging.join(", ")}. These are directions for future study, alongside my established work in speech and conversational AI.</p></section></>; }
