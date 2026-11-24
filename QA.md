@@ -30,6 +30,6 @@ These access restrictions are not represented as successful unrestricted access.
 - The CV view/download branch cannot be tested with the real document until the owner supplies the PDF. No substitute PDF was generated.
 - Experience dates/titles are supplied by the owner and still need reconciliation against the latest academic CV.
 - Two requested AIP entries remain omitted: one has publisher-deposited Crossref metadata but lacks direct-publisher date confirmation; the other lacks a matching original record.
-- No GitHub Pages or Vercel deployment was performed. The GitHub Actions workflow, Vercel configuration, and exact setup instructions are included. Domain availability, purchase, DNS configuration, and HTTPS provisioning are not completed or claimed.
+- This report records local QA before publication. Check the repository’s GitHub Pages deployment and latest Actions run for live publication status. Vercel is optional. Custom-domain availability, purchase, and DNS configuration remain outside the completed setup.
 
 The mobile project screenshot is delivered separately as `research-mobile.jpg`.

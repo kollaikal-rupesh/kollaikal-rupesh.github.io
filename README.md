@@ -60,7 +60,7 @@ Official references: [Pages availability and custom domains](https://docs.github
 4. Deploy and confirm the production URL. After changing domains, update the variable and redeploy.
 5. In Vercel’s Domains settings, add your apex and `www` domains and choose one as the primary; redirect the other to it.
 
-Without an explicit origin, the project defaults to `https://kollaikal-rupesh.github.io`. `.env.example` documents the two optional build-time settings. No runtime secrets are necessary. No Vercel project or public GitHub repository was created during development.
+Without an explicit origin, the project defaults to `https://kollaikal-rupesh.github.io`. `.env.example` documents the two optional build-time settings. No runtime secrets are necessary. GitHub Pages publishing is controlled by the included workflow. Vercel remains an optional alternative.
 
 ## Updating content
 
