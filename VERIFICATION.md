@@ -126,3 +126,7 @@ The archived v1 card confirms 5,262,337 parameters, two causal convolutions, six
 The supplied GitHub account, Hugging Face organization, p99lab website, model cards, benchmark record, three displayed merged PRs, VoxTurn, and Soniqo returned HTTP 200 during the final link check. LinkedIn also returned 200, but automated access can show an interstitial; the exact supplied profile is independently cross-linked from the GitHub account. The Hugging Face link is explicitly labeled as the p99lab organization, not a verified personal account.
 
 SSRN and Preprints.org blocked direct automated fetching (403); original records were accessible through indexed primary-source retrieval. IJNRD's previously verified publisher record returned a server error (500) during the final direct check. These link-access limitations are retained in `reports/external-links.json`; a 403 is not treated as proof that a publication does not exist.
+
+## Coursework update
+
+The UC Davis MSBA and Saveetha coursework lists were supplied directly by the owner on November 24, 2026 and added to both the homepage and CV page. Capitalization was standardized and “JS” expanded to “JavaScript”; no additional courses were inferred.
