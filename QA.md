@@ -33,3 +33,7 @@ These access restrictions are not represented as successful unrestricted access.
 - This report records local QA before publication. Check the repository’s GitHub Pages deployment and latest Actions run for live publication status. Vercel is optional. Custom-domain availability, purchase, and DNS configuration remain outside the completed setup.
 
 The mobile project screenshot is delivered separately as `research-mobile.jpg`.
+
+## Portrait and profile-link update
+
+On November 24, 2026, the owner-supplied portrait was added as a 448 × 560 WebP (approximately 25 KB). GitHub and LinkedIn links appear directly beneath the name and in the footer. Lint, type generation, TypeScript, production build, and export checks passed (268 internal links/assets). The portrait asset was visually inspected. A fresh browser layout inspection was unavailable for this update.

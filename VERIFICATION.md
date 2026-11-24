@@ -111,7 +111,7 @@ Additional corroboration, not needed on the homepage: The Agentic Data Company's
 ## Missing personal evidence and editorial boundaries
 
 - The user's brief is a source for biographical and education text, but the latest academic CV has not been supplied. Role titles and dates cannot yet be checked against it. Mark this as a setup/review requirement rather than inventing a CV.
-- No headshot is supplied. Do not generate a substitute portrait.
+- The owner supplied a portrait on November 24, 2026. It is used on the homepage as an optimized WebP asset; no substitute portrait was generated.
 - No Google Scholar ownership was verified. Crossref exposes an unauthenticated ORCID association for the mini paper; that alone is insufficient to verify account ownership, so omit an ORCID profile link unless confirmed.
 - No university affiliation, admission, PhD enrollment, biological-neuroscience research, private personal details, invented citation statistics or undocumented collaborations should appear.
 

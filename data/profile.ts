@@ -11,6 +11,6 @@ export const profile = {
   ],
   interests: ["Spoken language modeling", "Computational linguistics", "Conversational intelligence", "Computational modeling of human cognition"],
   emerging: ["NeuroAI", "Human–AI interaction", "Multimodal intelligence", "Computational pragmatics"],
-  // Add a genuine portrait to public/images and set this path, or leave null.
-  headshot: null as string | null,
+  // Owner-supplied portrait; set null to use the layout without a photo.
+  headshot: "/images/kollaikal-rupesh.webp" as string | null,
 };

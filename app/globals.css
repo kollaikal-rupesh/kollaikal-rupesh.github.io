@@ -26,6 +26,7 @@ h3 { font-size: 1.075rem; line-height: 1.5; font-weight: 600; }
 .intro { padding-block: 58px 52px; }
 .eyebrow { font-family: var(--font-sans); font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); line-height: 1.6; }
 .intro .eyebrow { margin-bottom: 16px; }
+.intro-heading > div { min-width: 0; }
 .intro-heading { display: flex; justify-content: space-between; align-items: center; gap: 28px; }
 .identity { font-size: 1.05rem; margin-top: 18px; }
 .location { font-size: .875rem; color: var(--muted); margin-top: 1px; }
@@ -37,7 +38,7 @@ h3 { font-size: 1.075rem; line-height: 1.5; font-weight: 600; }
 .interests ul { list-style: none; padding: 0; margin: 15px 0; font-size: .9375rem; line-height: 1.6; }
 .interests li + li { margin-top: 12px; }
 .small-note { font-size: .8125rem; color: var(--muted); line-height: 1.65; }
-.portrait { object-fit: cover; max-width: 30%; height: auto; }
+.portrait { display: block; width: 176px; height: auto; flex-shrink: 0; border-radius: 2px; }
 .home-section { border-top: 1px solid var(--rule); padding-block: 35px 44px; scroll-margin-top: 32px; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 14px; }
 .section-heading > a { font-size: .875rem; white-space: nowrap; }
@@ -110,6 +111,8 @@ h3 { font-size: 1.075rem; line-height: 1.5; font-weight: 600; }
   .site-header .wordmark { display: none; }
   .site-header nav { width: 100%; max-width: none; justify-content: space-between; flex-wrap: nowrap; gap: 10px; }
   .intro { padding-block: 39px; }
+  .intro-heading { flex-direction: column-reverse; align-items: flex-start; gap: 26px; }
+  .portrait { width: 120px; }
   .intro-grid { grid-template-columns: 1fr; gap: 30px; }
   .interests { padding: 23px 0 0; border-left: 0; border-top: 1px solid var(--rule); }
   .interests ul { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
