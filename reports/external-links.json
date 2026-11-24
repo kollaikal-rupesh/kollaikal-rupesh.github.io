@@ -1,0 +1,116 @@
+{
+  "checked": "2026-11-24",
+  "results": [
+    {
+      "url": "https://arxiv.org/html/2610.21150v1",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2610.21150v1",
+      "challenge": false
+    },
+    {
+      "url": "https://github.com/P99Lab/turn-1-mini",
+      "status": 200,
+      "final_url": "https://github.com/P99Lab/turn-1-mini",
+      "challenge": false
+    },
+    {
+      "url": "https://github.com/kollaikal-rupesh",
+      "status": 200,
+      "final_url": "https://github.com/kollaikal-rupesh",
+      "challenge": false
+    },
+    {
+      "url": "https://github.com/livekit/eot-bench/blob/1769c562b5a962b97b110d26ec0ee3cf864cc249/README.md",
+      "status": 200,
+      "final_url": "https://github.com/livekit/eot-bench/blob/1769c562b5a962b97b110d26ec0ee3cf864cc249/README.md",
+      "challenge": false
+    },
+    {
+      "url": "https://github.com/pipecat-ai/pipecat/pull/3857",
+      "status": 200,
+      "final_url": "https://github.com/pipecat-ai/pipecat/pull/3857",
+      "challenge": false
+    },
+    {
+      "url": "https://github.com/pipecat-ai/pipecat/pull/3870",
+      "status": 200,
+      "final_url": "https://github.com/pipecat-ai/pipecat/pull/3870",
+      "challenge": false
+    },
+    {
+      "url": "https://github.com/pipecat-ai/pipecat/pull/4245",
+      "status": 200,
+      "final_url": "https://github.com/pipecat-ai/pipecat/pull/4245",
+      "challenge": false
+    },
+    {
+      "url": "https://huggingface.co/p99lab",
+      "status": 200,
+      "final_url": "https://huggingface.co/p99lab",
+      "challenge": false
+    },
+    {
+      "url": "https://huggingface.co/p99lab/audrey-0.7",
+      "status": 200,
+      "final_url": "https://huggingface.co/p99lab/audrey-0.7",
+      "challenge": false
+    },
+    {
+      "url": "https://huggingface.co/p99lab/turn-1",
+      "status": 200,
+      "final_url": "https://huggingface.co/p99lab/turn-1",
+      "challenge": false
+    },
+    {
+      "url": "https://huggingface.co/p99lab/turn-1-mini",
+      "status": 200,
+      "final_url": "https://huggingface.co/p99lab/turn-1-mini",
+      "challenge": false
+    },
+    {
+      "url": "https://huggingface.co/p99lab/turn-1-mini/blob/e3c8bc7/README.md",
+      "status": 200,
+      "final_url": "https://huggingface.co/p99lab/turn-1-mini/blob/e3c8bc7/README.md",
+      "challenge": false
+    },
+    {
+      "url": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
+      "status": 200,
+      "final_url": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
+      "challenge": false
+    },
+    {
+      "url": "https://linkedin.com/in/kollaikalrupesh",
+      "status": 200,
+      "final_url": "https://linkedin.com/in/kollaikalrupesh",
+      "challenge": false
+    },
+    {
+      "url": "https://soniqo.audio/guides/turn-models",
+      "status": 200,
+      "final_url": "https://soniqo.audio/guides/turn-models",
+      "challenge": false
+    },
+    {
+      "url": "https://ssrn.com/abstract=6778759",
+      "status": 403,
+      "note": "Automated access blocked"
+    },
+    {
+      "url": "https://www.ijnrd.org/viewpaperforall.php?paper=IJNRD2605471",
+      "status": 500,
+      "note": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "url": "https://www.p99lab.com/",
+      "status": 200,
+      "final_url": "https://www.p99lab.com/",
+      "challenge": false
+    },
+    {
+      "url": "https://www.preprints.org/manuscript/202610.3143",
+      "status": 403,
+      "note": "Automated access blocked"
+    }
+  ]
+}

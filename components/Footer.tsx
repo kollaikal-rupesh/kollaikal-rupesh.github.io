@@ -1,0 +1,2 @@
+import Link from "@/components/Link";
+export function Footer() { return <footer className="shell site-footer"><div><span className="footer-name">Kollaikal Rupesh</span><p>Speech, language, and interactive intelligence.</p></div><div><a href="mailto:kollaikalrupesh@gmail.com">Get in touch</a><p><Link href="/research/">Research</Link><span aria-hidden="true"> · </span><Link href="/cv/">CV</Link></p></div></footer>; }

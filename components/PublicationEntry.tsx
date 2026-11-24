@@ -1,0 +1,3 @@
+import Link from "@/components/Link";
+import type { Publication } from "@/data/types";
+export function PublicationEntry({ publication: p }: { publication: Publication }) { if (!p.verified) return null; return <article className="publication"><span className="publication-year">{p.year}</span><div><h3><Link href={`/publications/${p.slug}/`}>{p.title}</Link></h3><p className="authors">{p.authors.join(", ")}</p><p className="publication-venue">{p.venue} · {p.status}</p><div className="project-links"><a href={p.url}>Paper</a>{p.codeUrl && <a href={p.codeUrl}>Research repository</a>}<Link href={`/publications/${p.slug}/#citation`}>Cite</Link></div></div></article>; }
